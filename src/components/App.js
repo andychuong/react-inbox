@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Toolbar from './Toolbar'
+import Compose from './Compose'
+import MessageList from './MessageList'
 
 class App extends Component {
   constructor(props) {
@@ -17,11 +19,17 @@ class App extends Component {
     const json = await response.json();
     // Set State
     this.setState({ messages: json });
+    // console.log(this.messages)
   }
+  
   render() {
     return (
       <div className="App">
-        <Toolbar/>
+        <div className="container">
+          <Toolbar />
+          <Compose />
+          <MessageList messages={this.state.messages} />
+        </div>
       </div>
     );
   }

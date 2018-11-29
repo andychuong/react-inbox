@@ -1,22 +1,29 @@
 import React from 'react'
+import Label from './Label'
 
 const Message = ( {message} ) => {
+  let read = message.read ? "read" : "unread";
+  let selected = message.selected ? "selected" : "unselected";
+  let starred = message.starred ? "fa-star" : "fa-star-o";
+
   return (
-    <div className="row message read">
-      <div className="col-xs-1">
-        <div className="row">
-          <div className="col-xs-2">
-            <input type="checkbox" />
+    <div class={`row message ${read} ${selected} textLeft`}>
+      <div class="col-xs-1">
+        <div class="row">
+          <div class="col-xs-2">
+            <input type="checkbox" checked="checked" />
           </div>
-          <div className="col-xs-2">
-            <i className="star fa fa-star"></i>
+          <div class="col-xs-2">
+            <i class={`star fa ${starred}`}></i>
           </div>
         </div>
       </div>
-      <div className="col-xs-11 message-sub">
-        <a href="index.html">
+      <div class="col-xs-11">
+      {/* Labels */}
+      <Label labels={message.labels}/>
+        <a href="#">
           {message.subject}
-        </a>
+    </a>
       </div>
     </div>
   )
